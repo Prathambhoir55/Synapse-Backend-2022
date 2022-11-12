@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 class Contact_info(models.Model):
     Phonenum = models.PositiveIntegerField(null =True)
     github = models.CharField(max_length=100,null =True)
