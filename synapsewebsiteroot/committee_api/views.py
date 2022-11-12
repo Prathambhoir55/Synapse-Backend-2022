@@ -8,48 +8,20 @@ from rest_framework.views import APIView
 class CoreAPI(APIView):
     def get (self, request):
         core_objs = CoreCommittee.objects.all()
+        dicty = {1:'Chair person',2:'Co-chair person',3:'Admin & secretary',4:'ML Head',5:'Tech Head',6:'Creative Head',7:'Events & PR Head',8:'Marketing Head'}
         for i in core_objs:
-            if i.Position == 1:
-                i.Position = 'Chair person'
-            elif i.Position == 2 : 
-                i.Position = 'Co-chair person'
-            elif i.Position == 3 : 
-                i.Position = 'Admin & secretary'
-            elif i.Position == 4 : 
-                i.Position = 'ML Head'
-            elif i.Position == 5 : 
-                i.Position = 'Tech Head'
-            elif i.Position == 6 : 
-                i.Position = 'Creative Head'
-            elif i.Position == 7 : 
-                i.Position = 'Events & PR Head'
-            elif i.Position == 8 : 
-                i.Position = 'Marketing Head'
+            if i.Position in dicty:
+                i.Position = dicty[i.Position]
         _data = CoreCommitteeSerilalizer(core_objs, many = True)
         return Response({'status':200, 'payload': _data.data})
 
 class ExMemberAPI(APIView):
     def get (self, request):
         excore_objs = Exmembers.objects.all()
+        dicty = {1:'Chair person',2:'Co-chair person',3:'Admin & secretary',4:'ML Head',5:'Tech Head',6:'Creative Head',7:'Events & PR Head',8:'Marketing Head',9:'Founder'}
         for i in excore_objs:
-            if i.Position == 1:
-                i.Position = 'Chair person'
-            elif i.Position == 2 : 
-                i.Position = 'Co-chair person'
-            elif i.Position == 3 : 
-                i.Position = 'Admin & secretary'
-            elif i.Position == 4 : 
-                i.Position = 'ML Head'
-            elif i.Position == 5 : 
-                i.Position = 'Tech Head'
-            elif i.Position == 6 : 
-                i.Position = 'Creative Head'
-            elif i.Position == 7 : 
-                i.Position = 'Events & PR Head'
-            elif i.Position == 8 : 
-                i.Position = 'Marketing Head'
-            elif i.Position == 9 : 
-                i.Position = 'Founder'
+            if i.Position in dicty:
+                i.Position = dicty[i.Position]
         _data = ExMemberbersSerilalizer(excore_objs, many = True)
         return Response({'status':200, 'payload': _data.data})
 
