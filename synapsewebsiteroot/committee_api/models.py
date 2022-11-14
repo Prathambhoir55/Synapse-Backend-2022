@@ -85,3 +85,15 @@ class Exmembers(models.Model):
 
     def __str__(self):
         return (str(self.SapId)+" "+self.Fname +" "+self.Lname)
+
+class Event(models.Model):
+    title = models.CharField(max_length=100, null =True)
+    description = models.TextField(null =True)
+    date = models.DateField(null =True)
+    sponsors = models.TextField(null =True)
+    budget = models.IntegerField(null =True)
+    status = models.BooleanField()
+
+class multi_image(models.Model):
+    event = models.ForeignKey(Event, default=None, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="events/",blank=True, null=True)

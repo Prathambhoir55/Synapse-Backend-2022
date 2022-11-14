@@ -25,5 +25,12 @@ class ExMemberbersSerilalizer(serializers.ModelSerializer):
         model = Exmembers
         fields = '__all__'
 
+class EventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
+        exclude = ['status', ]
 
-        
+class Multi_imageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = multi_image
+        fields = ['image']
