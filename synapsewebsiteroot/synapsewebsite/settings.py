@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-($53)@5v7fkl&ryi&&82ca^2&cswp=3&5l$+%vyd&w3alekdw=
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+#'localhost', 'synapseOP.pythonanywhere.com'
 
 # Application definition
 
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "committee_api",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
@@ -105,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/kolkata'
 
 USE_I18N = True
 
@@ -121,3 +123,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_URL = '/media/'
+
+import os 
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
