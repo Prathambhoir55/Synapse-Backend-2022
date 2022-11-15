@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-($53)@5v7fkl&ryi&&82ca^2&cswp=3&5l$+%vyd&w3alekdw=
 DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', 'synapseOP.pythonanywhere.com']
-#'localhost', 'synapseOP.pythonanywhere.com'
+CORS_ALLOW_HEADERS = "*"
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
 
