@@ -34,3 +34,16 @@ class Multi_imageSerializer(serializers.ModelSerializer):
     class Meta:
         model = multi_image
         fields = ['image']
+
+class ProjectsSerializer(serializers.ModelSerializer):
+    core = CoreCommitteeSerilalizer(read_only=True, many=True)
+    fk_faculty = FacultySerilalizer()
+    Exmembers = ExMemberbersSerilalizer(read_only=True, many=True)
+    class Meta:
+        model = Project
+        fields = '__all__'
+
+class Projects_imageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Projects_image
+        fields = ['image']
