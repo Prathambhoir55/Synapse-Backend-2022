@@ -7,4 +7,5 @@ urlpatterns = [
     path('faculty/', FacultyAPI.as_view(), name = 'faculty'),
     path('upcomming_events/', upcomming_events.as_view(), name = 'upcomming_events'),
     path('past_events/', past_events.as_view(), name = 'past_events'),
+    path('projects/', Project.as_view(), name = 'projects'),
 ]
