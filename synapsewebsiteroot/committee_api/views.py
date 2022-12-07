@@ -66,7 +66,7 @@ class Project(GenericAPIView):
         img = {}
         for Project in Project_objs:
             img_objs = Projects_image.objects.filter(Project = Project.id)  
-            _image = Multi_imageSerializer(img_objs, many = True)
+            _image = Projects_imageSerializer(img_objs, many = True)
             img[Project.id] = _image.data
         _data = ProjectsSerializer(Project_objs, many = True)
         return JsonResponse({'status':200, 'payload': _data.data, 'image': img})
