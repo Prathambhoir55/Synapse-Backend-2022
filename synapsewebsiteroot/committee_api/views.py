@@ -62,7 +62,7 @@ class past_events(GenericAPIView):
 class Project(GenericAPIView):
     serializer_class = ProjectsSerializer
     def get (self, request):
-        Project_objs = Project.objects.filter()
+        Project_objs = Project.objects.all()
         img = {}
         for Project in Project_objs:
             img_objs = Projects_image.objects.filter(Project = Project.id)  
