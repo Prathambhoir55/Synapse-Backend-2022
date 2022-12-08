@@ -59,14 +59,14 @@ class past_events(GenericAPIView):
         _data = EventSerializer(event_objs, many = True)
         return JsonResponse({'status':200, 'payload': _data.data,  'image': img})
 
-class Project(GenericAPIView):
+class ProjectAPI(GenericAPIView):
     serializer_class = ProjectsSerializer
     def get (self, request):
         Project_objs = Project.objects.all()
         img = {}
-        for Project in Project_objs:
-            img_objs = Projects_image.objects.filter(Project = Project.id)  
+        for Proj in Project_objs:
+            img_objs = Projects_image.objects.filter(Project = Proj.id)
             _image = Projects_imageSerializer(img_objs, many = True)
-            img[Project.id] = _image.data
+            img[Proj.id] = _image.data
         _data = ProjectsSerializer(Project_objs, many = True)
         return JsonResponse({'status':200, 'payload': _data.data, 'image': img})
