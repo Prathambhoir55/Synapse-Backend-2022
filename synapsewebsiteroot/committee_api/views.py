@@ -37,25 +37,71 @@ class FacultyAPI(GenericAPIView):
 class upcomming_events(GenericAPIView):
     serializer_class = EventSerializer
     def get (self, request):
-        #while Event.status == False:
         event_objs = Event.objects.filter(status = False)
         img = {}
-        for event in event_objs:
-            img_objs = multi_image.objects.filter(event = event.id)  
-            _image = Multi_imageSerializer(img_objs, many = True)
-            img[event.id] = _image.data
         _data = EventSerializer(event_objs, many = True)
-        return JsonResponse({'status':200, 'payload': _data.data, 'image': img})
+        for event in event_objs:
+            img_objs = multi_image.objects.filter(event = event.id)
+            _image = Multi_imageSerializer(img_objs, many = True)
+            i=0
+            img_list = []
+            while i+1 <= len(_image.data):
+                img_list.append(_image.data[i]['image'])
+                i = i+1
+            img[event.id] = _image.data
+            i=0
+            while i+1 <= len(_data.data):
+                if(_data.data[i]['id'] != event.id):
+                    i = i+1
+                else:
+                    _data.data[i]['images'] = img_list
+                    break
+        return JsonResponse({'status':200, 'payload': _data.data})
 
 class past_events(GenericAPIView):
     serializer_class = EventSerializer
     def get (self, request):
         event_objs = Event.objects.filter(status = True)
         img = {}
-        for event in event_objs:
-            img_objs = multi_image.objects.filter(event = event.id)  
-            _image = Multi_imageSerializer(img_objs, many = True)
-            img[event.id] = _image.data
         _data = EventSerializer(event_objs, many = True)
-        return JsonResponse({'status':200, 'payload': _data.data,  'image': img})
+        for event in event_objs:
+            img_objs = multi_image.objects.filter(event = event.id)
+            _image = Multi_imageSerializer(img_objs, many = True)
+            i=0
+            img_list = []
+            while i+1 <= len(_image.data):
+                img_list.append(_image.data[i]['image'])
+                i = i+1
+            img[event.id] = _image.data
+            i=0
+            while i+1 <= len(_data.data):
+                if(_data.data[i]['id'] != event.id):
+                    i = i+1
+                else:
+                    _data.data[i]['images'] = img_list
+                    break
+        return JsonResponse({'status':200, 'payload': _data.data})
 
+class ProjectAPI(GenericAPIView):
+    serializer_class = ProjectsSerializer
+    def get (self, request):
+        Project_objs = Project.objects.all()
+        img = {}
+        _data = ProjectsSerializer(Project_objs, many = True)
+        for event in Project_objs:
+            img_objs = multi_image.objects.filter(event = event.id)
+            _image = Projects_imageSerializer(img_objs, many = True)
+            i=0
+            img_list = []
+            while i+1 <= len(_image.data):
+                img_list.append(_image.data[i]['image'])
+                i = i+1
+            img[event.id] = _image.data
+            i=0
+            while i+1 <= len(_data.data):
+                if(_data.data[i]['id'] != event.id):
+                    i = i+1
+                else:
+                    _data.data[i]['images'] = img_list
+                    break
+        return JsonResponse({'status':200, 'payload': _data.data})
