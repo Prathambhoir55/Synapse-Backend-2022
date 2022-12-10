@@ -97,3 +97,25 @@ class Event(models.Model):
 class multi_image(models.Model):
     event = models.ForeignKey(Event, default=None, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="events/",blank=True, null=True)
+
+class Project(models.Model):
+    title = models.CharField(max_length=100, null=True)
+    description = models.TextField(null=True)
+    project_no = models.IntegerField(null=True)
+    field = models.TextField(null=True)
+
+    core = models.ManyToManyField(CoreCommittee, blank=True, related_name='core_projects')
+    fk_faculty = models.ForeignKey(Faculty, default=None, on_delete=models.CASCADE)
+    Exmembers = models.ManyToManyField(CoreCommittee, blank=True)
+    
+class Projects_image(models.Model):
+    Project = models.ForeignKey(Project, default=None, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="Projects/",blank=True, null=True)
+
+# class Resources(models.model):
+#     title = models.CharField(max_length=100, null =True)
+#     description = models.TextField(null =True)
+
+# class Resources_image(models.Model):
+#     resources = models.ForeignKey(Resources,default=None, on_delete=models.CASCADE)
+#     image = models.ImageField(upload_to="resources/",blank=True, null=True)
